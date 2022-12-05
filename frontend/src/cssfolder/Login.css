@@ -1,0 +1,116 @@
+.primary {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.loginlogo {
+  width: 29%;
+}
+
+.formdiv {
+  margin-top: 20px;
+}
+
+/* login input field */
+
+.username {
+  width: 19%;
+  height: 39px;
+  padding: 8px 10px;
+  margin: 8px 0;
+  /* box-sizing: border-box; */
+  border: 1px solid rgb(75, 75, 75);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+.username:focus {
+  border: 1px solid rgb(23, 74, 204);
+}
+
+.password {
+  width: 19%;
+  height: 39px;
+  padding: 8px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid rgb(75, 75, 75);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+.password:focus {
+  border: 1px solid rgb(23, 74, 204);
+}
+
+.submitbutton {
+  width: 19%;
+  height: 42px;
+  background-color: #ed1c24;
+  border: none;
+  color: white;
+  text-decoration: none;
+  margin: 10px 2px;
+  cursor: pointer;
+}
+
+.submitbutton:hover {
+  background-color: #2c2c2c; /* Green */
+}
+
+/* modal section css */
+
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  padding: 2em;
+  min-width: 20em;
+  max-width: 70%;
+  color: #f00;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  outline: transparent;
+  height: 18vh;
+  width: 30%;
+}
+.Overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.sademoji {
+  width: 10%;
+}
+
+.resolutionLoginError {
+  display: none;
+  text-align: center;
+  margin: 40vh;
+  color: #494949;
+  font-size: 20px;
+}
+
+/* @media screen and (max-width: 1200px) {
+  .primary {
+    display: none;
+  }
+
+  .resolutionLoginError {
+    display: block;
+  }
+} */
