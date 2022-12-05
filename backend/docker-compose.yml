@@ -1,0 +1,70 @@
+# services:
+#   mongodb:
+#     image: mongo
+#     restart: always
+
+#   backend:
+#     image: waveentry-server
+#     environment:
+#       - DB_HOST=mongodb
+#       - DB_NAME=wavedb
+#       - SERVER_PORT=3001
+#       - JWT_SECRET=abcd1234
+#     ports:
+#       - "3001:3001"
+#     depends_on:
+#       - mongodb
+
+#   seeder:
+#     image: waveentry-server
+#     environment:
+#       - DB_HOST=mongodb
+#       - DB_NAME=wavedb
+#       - SERVER_PORT=3001
+#       - JWT_SECRET=abcd1234
+#     command: npm run db:seed
+#     depends_on:
+#       - mongodb
+#       - backend
+
+#   frontend:
+#     image: waveentry-web
+#     environment:
+#       - REACT_APP_SERVER_URL=http://0.0.0.0:3000
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - mongodb
+#       - backend
+#       - seeder
+
+services:
+  backend:
+    image: waveentry-server
+    build: .
+    environment:
+      - DB_HOST=mongodb
+      - DB_NAME=wavedb
+      - SERVER_PORT=3001
+      - JWT_SECRET=abcd1234
+      - DB_PORT=27017
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    restart: always
+    # giving port is optional
+    ports:
+      - "27017:27017"
+
+  frontend:
+    image: waveentry-web
+    environment:
+      - REACT_APP_SERVER_URL=http://0.0.0.0:3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
