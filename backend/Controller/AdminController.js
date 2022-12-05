@@ -46,7 +46,8 @@ const remove = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const admin = await Admin.findOne({ username: req.user });
+    console.log(username);
+    const admin = await Admin.findOne({ username: username });
 
     if (admin) {
       admin.username = username;
