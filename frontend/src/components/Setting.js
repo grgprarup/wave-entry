@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "../cssfolder/setting.css";
 import ReactModal from "react-modal";
 import SadEmoji from "../images/sad.png";

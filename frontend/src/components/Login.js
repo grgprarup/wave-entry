@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "../cssfolder/Login.css";
 import LoginLogo from "../images/loginlogowaves.png";
 import ReactModal from "react-modal";

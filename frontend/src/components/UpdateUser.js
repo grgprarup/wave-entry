@@ -1,8 +1,6 @@
-import userEvent from "@testing-library/user-event";
 import React from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Select from "react-select";
-import axios from "axios";
 import ReactModal from "react-modal";
 import SadEmoji from "../images/sad.png";
 import { updateStudent, getStudent } from "../api/student";

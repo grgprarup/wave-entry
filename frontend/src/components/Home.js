@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, {  } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../cssfolder/home.css";
 import Table from "@mui/material/Table";
@@ -9,12 +9,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { TablePagination } from "@mui/material";
 import HomeLogo from "../images/homelogowaves.png";
-import { FiAlignJustify } from "react-icons/fi";
-import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
+import { Menu, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-import { color } from "@mui/system";
-import { time } from "faker";
 import ReactModal from "react-modal";
 import { getStudents, deleteStudent } from "../api/student";
 
