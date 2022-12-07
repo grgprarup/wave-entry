@@ -16,6 +16,7 @@ When('admin creates sub admin with following credentials', async function (dataT
                 'Content-Type': 'application/json',
             }
         })
+    subAdminCreated.push(userDetails.username)
 });
 
 Then('status code should be {int}', function (expectedStatuscode) {
@@ -28,5 +29,4 @@ Then('status code should be {int}', function (expectedStatuscode) {
 Then('the created sub-admin username should be {string}', function (expectedUserName) {
    const actualUserName = response.data.username;
    expect(expectedUserName).toBe(actualUserName);
-   console.log(actualUserName)
 });
