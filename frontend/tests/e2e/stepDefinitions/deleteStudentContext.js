@@ -1,5 +1,4 @@
 const {When, Then, Given } = require("@cucumber/cucumber");
-const { extractEventHandlers } = require("@mui/material");
 const {expect } = require("@playwright/test");
 
 // "User Delete Successfull !!" , div .modaldiv .text-center <- delete successfull
@@ -33,7 +32,7 @@ const msgBoxElement = 'div.modaldiv.text-center';
   });
 
 
-  Then('the user should be provided with delete successful message', async  function () {
+  Then('the user should see message "User Delete Successfull !!"', async  function () {
     const msg = page.locator(msgBoxElement);
     await expect(msg).toBeVisible();
   });

@@ -31,11 +31,18 @@ const successMsgElement = 'div.modaldiv.text-center';
 const registerDivElement = "div.main-register-div";
 
 
-When('the user tries to add a student with name {string}, email {string}, address {string}, phone {string}, qualification {string}, cgpa {string}, destination {string} and ielts {string}',
-    async function (name, email, address, phone, qualification, cgpa, destination, ielts) {
+When('the user tries to add a student with details',
+    async function (dataTable) {
 
-        // goto register page
-        //await page.goto(addStuentURL);
+       const nameValue = dataTable.raw()[0][1];
+       const emailValue = dataTable.raw()[1][1];
+       const addrValue = dataTable.raw()[2][1];
+       const phoneValue = dataTable.raw()[3][1];
+       const qualValue = dataTable.raw()[4][1];
+       const cgpaValue = dataTable.raw()[5][1];
+       const destValue = dataTable.raw()[6][1];
+       const ieltsValue = dataTable.raw()[7][1];
+
 
         // Since we're already on home page, just click add student button
 
@@ -49,109 +56,50 @@ When('the user tries to add a student with name {string}, email {string}, addres
         await expect(regDiv).toBeVisible();
 
         // fill the details
-        await page.fill(nameInput, name);
-        await page.fill(emailInput, email);
-        await page.fill(addressInput, address);
-        await page.fill(phoneInput, phone);
+        await page.fill(nameInput, nameValue);
+        await page.fill(emailInput, emailValue);
+        await page.fill(addressInput, addrValue);
+        await page.fill(phoneInput, phoneValue);
 
 
         // Default is +2, so only click if necessary for bachelors or masters
-        if (qualification === "bachelors") {
+        if (qualValue === "bachelors") {
             // first list options and then click the bachelors option
             await page.locator(qualSelectBox).click();
             await page.locator(bachelorsQualInput).click();
 
-        } else if (qualification === "masters") {
+        } else if (qualValue === "masters") {
 
             await page.locator(qualSelectBox).click();
             await page.locator(mastersQualInput).click();
         }
 
 
-        await page.fill(cgpaInput, cgpa);
+        await page.fill(cgpaInput, cgpaValue);
 
         // // Default destination is australia, only to click if other options are mentioned
-        if (destination === "usa") {
+        if (destValue === "usa") {
             // click the select box and select usa option
             await page.locator(destSelectBox).click();
             await page.locator(usaDestInput).click();
 
-        } else if (destination === "canada") {
+        } else if (destValue === "canada") {
             await page.locator(destSelectBox).click();
             await page.locator(canadaDestInput).click();
 
-        } else if (destination === "japan") {
+        } else if (destValue === "japan") {
             await page.locator(destSelectBox).click();
             await page.locator(japanDestInput).click();
         }
 
-        // For this, ielts option is no so skip clicking 
-        // if (ielts === "yes"){
-        //     await page.locator(ieltsInputSelectBox).click();
-        //     await expect(page.locator(ieltsScoreBox)).toBeVisible();
-        //     const listenInput = page.locator("input.listening-input");
-        //     const readingInput = page.locator("input.reading-input");
-        //     const writingInput = page.locator("input.writing-input");
-        //     const speakigInput = page.locator("input.speaking-input");
-        //     const overallInput = page.locator("overallband-number");
-        // }
-        //await page.fill(ieltsInput,ielts);
-
-        // click register button
-        await page.click(registerStudentElement);
-    });
-
-When('the user tries to add a student with name {string}, email {string}, address {string}, phone {string}, qualification {string}, cgpa {string}, destination {string} and scores of listening {string}, reading {string}, writing {string}, speaking {string} and overall {string}',
-    async function (name, email, address, phone, qualification, cgpa, destination, listening, reading, writing, speaking, overall) {
-
-        // Since we're already on home page, just click add student button
-
-        // click the add student button
-        await page.click(addStudentElement);
-
-        // wait for the register form to open
-        const regDiv = page.locator(registerDivElement);
-
-        // expect the form to be visible
-        await expect(regDiv).toBeVisible();
-
-        // fill the details
-        await page.fill(nameInput, name);
-        await page.fill(emailInput, email);
-        await page.fill(addressInput, address);
-        await page.fill(phoneInput, phone);
-
-
-        // Default is +2, so only click if necessary for bachelors or masters
-        if (qualification === "bachelors") {
-            // first list options and then click the bachelors option
-            await page.locator(qualSelectBox).click();
-            await page.locator(bachelorsQualInput).click();
-
-        } else if (qualification === "masters") {
-
-            await page.locator(qualSelectBox).click();
-            await page.locator(mastersQualInput).click();
-        }
-
-
-        await page.fill(cgpaInput, cgpa);
-
-        // // Default destination is australia, only to click if other options are mentioned
-        if (destination === "usa") {
-            // click the select box and select usa option
-            await page.locator(destSelectBox).click();
-            await page.locator(usaDestInput).click();
-
-        } else if (destination === "canada") {
-            await page.locator(destSelectBox).click();
-            await page.locator(canadaDestInput).click();
-
-        } else if (destination === "japan") {
-            await page.locator(destSelectBox).click();
-            await page.locator(japanDestInput).click();
-        }
-
+        // if no ielts property is passed then it means yes to ielts score
+        if (ieltsValue !== "no"){
+            const listeningValue = dataTable.raw()[7][1];
+            const readingValue = dataTable.raw()[8][1];
+            const writingValue = dataTable.raw()[9][1];
+            const speakingValue = dataTable.raw()[10][1];
+            const overallValue = dataTable.raw()[11][1];
+     
         // select the ielts select box
         await page.locator(ieltsInputSelectBox).click();
         // click yes on ietls
@@ -167,11 +115,12 @@ When('the user tries to add a student with name {string}, email {string}, addres
         const overallInput = ".overallband-input";
 
 
-        await page.fill(listenInput, listening);
-        await page.fill(readingInput, reading);
-        await page.fill(writingInput, writing);
-        await page.fill(speakigInput, speaking);
-        await page.fill(overallInput, overall);
+        await page.fill(listenInput, listeningValue);
+        await page.fill(readingInput, readingValue);
+        await page.fill(writingInput, writingValue);
+        await page.fill(speakigInput, speakingValue);
+        await page.fill(overallInput, overallValue);
+        }
 
 
         // click register button
@@ -181,7 +130,7 @@ When('the user tries to add a student with name {string}, email {string}, addres
 
 
 
-Then('the user should be provided with add successful message', async function () {
+Then('the user should see message "Student Registration Successfull!!"', async function () {
     // check for success msg
     const msg = page.locator(successMsgElement);
     await expect(msg).toBeVisible();
