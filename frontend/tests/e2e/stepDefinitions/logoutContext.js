@@ -17,13 +17,13 @@ Given('the user has logged in with username {string} and password {string}', asy
     await expect(page.locator(homePage.homeLogoSelector)).toBeVisible();
 });
 
-When('the user clicks on logout', async function () {
+When('the user logs out', async function () {
 
     // click the logout
     await homePage.clickLogoutBtn();
 });
 
-Then('the user should be logged out and redirected to login page', async function () {
+Then('the user should be to the login page', async function () {
 
     const loginBtnElement = page.locator(loginPage.loginBtnSelector);
     // the login button to be visible

@@ -16,7 +16,7 @@ Given('the user has navigated to the login page', async function () {
 
 });
 
-When('the user logins with username {string} and password {string}', async function (username, password) {
+When('the user logs in with username {string} and password {string}', async function (username, password) {
 
     // fill the details of login fields and click login
     await loginPage.fillLoginInputFields({ "username": username, "password": password });

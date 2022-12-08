@@ -6,5 +6,5 @@ Feature: Logout users
 
 Scenario: Successful logout
     Given the user has logged in with username "admin" and password "admin"
-    When the user clicks on logout
-    Then the user should be logged out and redirected to login page
+    When the user logs out
+    Then the user should be to the login page
