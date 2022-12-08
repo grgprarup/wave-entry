@@ -1,57 +1,24 @@
-const {Given, When, Then} = require('@cucumber/cucumber')
-const {expect} = require('@playwright/test')
+const { Given, When, Then } = require('@cucumber/cucumber');
+const {expect} = require('@playwright/test');
+const {LoginPage} = require('../pageObjects/loginPage');
 
-const url = 'http://localhost:3000'
+const loginPage = new LoginPage();
 
-const loginPageElement = '.loginlogo'
-const usernameInput = '.username'
-const passwordInput = '.password'
-const loginBtn = '.submitbutton'
-const homePageElement = '.homelogo'
-const errorMsg = '.error-message'
-const menuBtn = '.menuButton'
-
-Given('the user has browsed the login page', async function() {
-    await page.goto(url)
-    const locator = page.locator(loginPageElement)
-    expect(locator).toBeVisible()
+Given('the user has browsed to the login page', async function(){
+    await loginPage.navigate();
 })
 
-When('the user logs in with username {string} and password {string}', async function(username, password) {
-    await page.fill(usernameInput, username)
-    await page.fill(passwordInput, password)
-    await page.click(loginBtn)
+When('the user tries to log in with username {string} and password {string}', async function(username, password){
+    await loginPage.fillLoginInputFields(username, password);
+    await loginPage.clickLoginBtn();
 })
 
-Then('the user should redirect to the home', async function() {
-    const locator = page.locator(homePageElement)
-    expect(locator).toBeVisible()
+Then('the user should redirect to the home page', async function(){
+    const homePageLocator = page.locator(loginPage.homePageSelector)
+    await expect(homePageLocator).toBeVisible()
 })
 
-Then('the user should see the invalid login message', async function() {
-    const locator = page.locator(errorMsg)
-    expect(locator).toBeVisible()
-})
-
-Given('the admin has browsed the home page', async function(){
-    await page.goto(url)
-    const loginLocator = page.locator(loginPageElement)
-    expect(loginLocator).toBeVisible()
-
-    await page.fill(usernameInput, 'admin')
-    await page.fill(passwordInput, 'admin')
-    await page.click(loginBtn)
-
-    const locator = page.locator(homePageElement)
-    expect(locator).toBeVisible()
-})
-
-When('the admin logs out of the homepage', async function() {
-    await page.click(menuBtn)
-    await page.locator('li:has-text("Logout")').click()
-})
-
-Then('the admin should redirect to the login page', async function() {
-    const locator = page.locator(loginPageElement)
-    expect(locator).toBeVisible()
+Then(`the user should see message "Invalid login"`, async function(){
+    const errorMsgLocator = page.locator(loginPage.errorMsgSelector)
+    await expect(errorMsgLocator).toBeVisible()
 })
