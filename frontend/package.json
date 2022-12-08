@@ -33,7 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:e2e": "cucumber-js --require config.js --require ./tests/stepdefinitions --format @cucumber/pretty-formatter"
+    "test:e2e": "cucumber-js --require config.js --require ./tests/stepdefinitions/ --format @cucumber/pretty-formatter"
   },
   "eslintConfig": {
     "extends": [
