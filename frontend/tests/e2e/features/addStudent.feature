@@ -16,7 +16,7 @@ Scenario Outline: Add a new valid student with no ielts
     | cgpa          | 3.8           |
     | destination   | usa           |
     | ielts         | no            |
-    Then the user should see message "Student Registration Successfull!!"
+    Then the user should see message "\"Student Registration Successfull!!\""
 
 Scenario Outline: Add a new valid student with ielts
     When the user tries to add a student with details
@@ -32,4 +32,4 @@ Scenario Outline: Add a new valid student with ielts
     | writing       | 6.0         |
     | speaking      | 6.0         |
     | overall       | 6.0         |
-    Then the user should see message "Student Registration Successfull!!"
+    Then the user should see message "\"Student Registration Successfull!!\""

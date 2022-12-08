@@ -2,54 +2,47 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 
 const { expect } = require("@playwright/test");
 
-const landingPageURL = "http://localhost:3000/";
+const { LoginPage } = require("../pageObjects/loginPage");
+const { HomePage } = require("../pageObjects/homePage");
+const { AddStudentPage } = require("../pageObjects/addStudentPage");
 
-const usernameInput = ".username";
-const passwordInput = ".password";
-const loginBtnElement = ".submitbutton";
-
-const searchElement = ".homeLogo";
-
-const errorMsgElement = 'p.error-message';
+const loginPage = new LoginPage();
+const homePage = new HomePage();
+const addStudentPage = new AddStudentPage();
 
 Given('the user has navigated to the login page', async function () {
-    // navigate to the landing page
-    // eslint-disable-next-line no-undef
-    await page.goto(landingPageURL)
-    // extract the text from login button
-    const button = page.locator(loginBtnElement);
+    // navigate to login page
+    await loginPage.navigate();
 
-    // the text content should be "LOGIN"
-    await expect(button).toBeVisible();
 });
-
-
 
 When('the user logins with username {string} and password {string}', async function (username, password) {
 
-    // fill the username
-    await page.fill(usernameInput, username)
-    // fill the password
-    await page.fill(passwordInput, password)
-    // click the login btn
-    await page.click(loginBtnElement)
+    // fill the details of login fields and click login
+    await loginPage.fillLoginInputFields({ "username": username, "password": password });
+    await loginPage.clickLoginBtn();
 
 });
 
 Then('the user should be redirected to the home page', async function () {
 
-    // locator for search input
-    const searchLocator = page.locator(searchElement);
-
-    // expect the search field to be visible
-    await expect(searchLocator).toBeVisible();
+    const homeLogo = page.locator(homePage.homeLogoSelector);
+    // home logo to be visible
+    await expect(homeLogo).toBeVisible();
 
 });
 
-Then('the user should see message "Invalid login"', async function () {
+Then('the user should see message {string}', async function (msg) {
 
-    const errorLocator = page.locator(errorMsgElement);
-
-    await expect(errorLocator).toBeVisible();
-
+    if (msg === "\"Student Registration Successfull!!\"") {
+        const text = await page.innerText(addStudentPage.successMsgElement);
+        await expect(text).toBe(msg);
+        
+    } else if (msg === "Invalid login") {
+        const text = await page.innerText(loginPage.errorMsgSelector);
+        // the paragraph should contain given msg
+        await expect(text).toBe(msg);
+    }else if (msg === "User Delete Successfull !!") {
+        
+    }
 });

@@ -12,7 +12,7 @@ Scenario: Login with valid credentials
 
 Scenario: Login with invalid credentials
     When the user logins with username "<username>" and password "<password>"
-    Then the user should see message "Invalid login"
+    Then the user should see message "\"Invalid login\""
     Examples:
     | username   | password   |
     | not_a_user | hellothere |

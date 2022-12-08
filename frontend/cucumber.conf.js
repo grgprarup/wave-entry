@@ -9,7 +9,7 @@ const { chromium } = require("playwright");
 BeforeAll(async function () {
     global.browser = await chromium.launch({
         headless: false,
-        slowMo: 200,
+        slowMo: 500,
     });
 
 });
