@@ -6,5 +6,5 @@ Feature: Delete users
     Scenario: Delete a student
         Given the user has logged in with username "admin" and password "admin"
         And the user with email "shyam@lol.com" has been created
-        When the user clicks on corresponding delete button
+        When the user deletes a student
         Then the user should see message "User Delete Successfull !!"

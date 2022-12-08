@@ -7,7 +7,7 @@ Background:
     Given the user has logged in with username "admin" and password "admin"
 
 Scenario Outline: Add a new valid student with no ielts
-    When the user tries to add a student with details
+    When the user adds a student with following details
     | name          | Shyam Sharma  |
     | email         | shyam@lol.com |
     | address       | Nowhere       |
@@ -19,7 +19,7 @@ Scenario Outline: Add a new valid student with no ielts
     Then the user should see message "\"Student Registration Successfull!!\""
 
 Scenario Outline: Add a new valid student with ielts
-    When the user tries to add a student with details
+    When the user adds a student with following details
     | name          | Ram Sharma  |
     | email         | ram@lol.com |
     | address       | Somewhere   |

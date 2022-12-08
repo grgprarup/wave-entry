@@ -5,7 +5,7 @@ const { expect } = require("@playwright/test");
 const { AddStudentPage } = require("../pageObjects/addStudentPage");
 const addStudentPage = new AddStudentPage();
 
-When('the user tries to add a student with details',
+When('the user adds a student with following details',
     async function (dataTable) {
 
         // fill the details

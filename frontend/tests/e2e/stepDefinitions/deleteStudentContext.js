@@ -15,7 +15,7 @@ Given('the user with email {string} has been created', async function (email) {
 });
 
 
-When('the user clicks on corresponding delete button', async function () {
+When('the user deletes a student', async function () {
 
   await deleteStudentPage.clickDeleteBtn();
 });
