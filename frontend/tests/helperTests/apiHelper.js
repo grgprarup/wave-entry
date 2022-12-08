@@ -1,38 +1,42 @@
 const axios = require("axios");
-let response = "";
-const baseUrl = "http://localhost:3001"
 
-async function deleteSubAdmin(subAdminName){
- const token = `admin:admin`;
- const encodedToken = Buffer.from(token).toString('base64');
+class Helper {
+  constructor(){
+   this.response = "";
+   this.baseUrl = "http://localhost:3001"
+  }
 
- const headers = {
-  "Authorization": 'Basic ' + encodedToken,
-  'Content-Type': 'application/json',
+ async createSubAdmin(dataTable){
+  const userDetails = dataTable.rowsHash();
+  const token = `admin:admin`;
+  const encodedToken = Buffer.from(token).toString('base64');
+  this.response = await axios.post(`${this.baseUrl}/admin/`, {
+   "username":userDetails.username,
+   "password":userDetails.password
+  }, {
+   headers: {
+    "Authorization": 'Basic ' + encodedToken,
+    'Content-Type': 'application/json',
+   }
+  })
  }
- const data = {
-  username: subAdminName
- }
-
- response = await axios.delete(`${baseUrl}/admin/`, {headers, data
- });
-
- return response
-}
-
-async function createSubAdmin(dataTable){
- const userDetails = dataTable.rowsHash();
- const token = `admin:admin`;
- const encodedToken = Buffer.from(token).toString('base64');
- response = await axios.post(`${baseUrl}/admin/`, {
-  "username":userDetails.username,
-  "password":userDetails.password
- }, {
-  headers: {
+ async deleteSubAdmin(subAdminName){
+  const token = `admin:admin`;
+  const encodedToken = Buffer.from(token).toString('base64');
+  console.log(this.baseUrl)
+  const headers = {
    "Authorization": 'Basic ' + encodedToken,
    'Content-Type': 'application/json',
   }
- })
- return response
+  const data = {
+   username: subAdminName
+  }
+
+  this.response = await axios.delete("http://localhost:3001/admin/", {headers, data
+  });
+  console.log(this.response)
+ }
+
 }
- module.exports = { createSubAdmin, deleteSubAdmin ,response}
+
+ module.exports = { Helper }
