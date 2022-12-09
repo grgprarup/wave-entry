@@ -3,11 +3,12 @@ const axios = require("axios");
 class Helper {
   constructor(){
    this._response = "";
+   this.token = `admin:admin`;
+   this.encodedToken = Buffer.from(this.token).toString('base64');
+
    this.baseUrl = "http://localhost:3001"
   }
   get response(){
-  // console.log("inside get")
-  // console.log(this._response)
    return this._response;
  }
  set response(response){
@@ -18,25 +19,21 @@ class Helper {
  }
  async createSubAdmin(dataTable){
   const userDetails = dataTable.rowsHash();
-  const token = `admin:admin`;
-  const encodedToken = Buffer.from(token).toString('base64');
   this._response = null
   return await axios.post(`${this.baseUrl}/admin/`, {
    "username":userDetails.username,
    "password":userDetails.password
   }, {
    headers: {
-    "Authorization": 'Basic ' + encodedToken,
+    "Authorization": 'Basic ' + this.encodedToken,
     'Content-Type': 'application/json',
    }
   })
   // return this._response;
  }
  async deleteSubAdmin(subAdminName){
-  const token = `admin:admin`;
-  const encodedToken = Buffer.from(token).toString('base64');
   const headers = {
-   "Authorization": 'Basic ' + encodedToken,
+   "Authorization": 'Basic ' + this.encodedToken,
    'Content-Type': 'application/json',
   }
   const data = {
@@ -48,7 +45,11 @@ class Helper {
  }
 
  async updateSubAdmin(){
-
+  return await axios.put(`${this.baseUrl}/admin/`,
+      {
+       "username":"shyam",
+       "password":"shyam1"
+      })
  }
 
 }
