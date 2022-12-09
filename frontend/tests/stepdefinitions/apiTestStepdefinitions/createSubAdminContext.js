@@ -30,8 +30,8 @@ Then('the created sub-admin username should be {string}', function (expectedUser
    expect(expectedUserName).toBe(actualUserName);
 });
 
-When('admin deletes sub-admin with username {string}', async function (username) {
-    // console.log(res)
-    console.log(helper.response)
-    helper.response = await helper.deleteSubAdmin(username)
-});
+// When('admin deletes sub-admin with username {string}', async function (username) {
+//     // console.log(res)
+//     console.log(helper.response)
+//     helper.response = await helper.deleteSubAdmin(username)
+// });
