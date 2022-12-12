@@ -4,11 +4,13 @@ const axios = require("axios");
 const { Helper } = require('../../helperTests/apiHelper')
 
 const helper = new Helper();
-
-// When('admin deletes sub-admin with username {string}', async function (username) {
-//     // console.log(res)
-//     console.log(helper.response)
-//     helper.response = await helper.deleteSubAdmin(username)
-// });
-
+Given('admin has created sub-admin with following credentials', async function (dataTable) {
+    Helper.response = await helper.createSubAdmin(dataTable);
+    // console.log(helper.response)
+    expect(Helper.response.status).toBe(201);
+});
+When('admin deletes sub-admin with username {string}', async function (username) {
+    Helper.response = await helper.deleteSubAdmin(username)
+    // console.log(helper.response)
+});
 
