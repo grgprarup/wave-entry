@@ -8,13 +8,10 @@ When('admin creates sub admin with following credentials', async function (dataT
     const res = await helper.createSubAdmin(dataTable);
     const userDetails = dataTable.rowsHash();
     subAdminCreated.push(userDetails.username);
-    // helper.setResponse(res)
-
     Helper.response=res;
 });
 
 Then('status code should be {int}', function (expectedStatusCode) {
-    // const res = helper.getResponse();
     const actualStatusCode = Helper.response.status;
     expect(expectedStatusCode).toBe(actualStatusCode);
 });
