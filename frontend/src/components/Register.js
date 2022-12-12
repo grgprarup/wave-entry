@@ -1,8 +1,6 @@
-import userEvent from "@testing-library/user-event";
 import React from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Select from "react-select";
-import axios from "axios";
 import "../cssfolder/register.css";
 import ReactModal from "react-modal";
 import SadEmoji from "../images/sad.png";
@@ -254,7 +252,6 @@ class Register extends React.Component {
       return <Redirect to="/" />;
     }
 
-    const { ielts, destination, qualification } = this.state;
     return (
       <div
         className="main-register-div"

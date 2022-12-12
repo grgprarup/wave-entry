@@ -1,6 +1,5 @@
-import { fontWeight } from "@mui/system";
 import React from "react";
-import { Redirect, useHistory, useLocation } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "../cssfolder/viewDetails.css";
 import { getStudent } from "../api/student";
 
