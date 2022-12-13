@@ -29,9 +29,9 @@ After (async function () {
 
  if(studentCreated.length !== 0){
   for(let student of studentCreated){
-   if(await helper.listOneStudent(id)){
-
-   }
+   // if(await helper.listOneStudent(id)){
+   //
+   // }
   }
  }
 });
