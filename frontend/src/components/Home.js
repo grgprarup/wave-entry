@@ -166,13 +166,13 @@ class Home extends React.Component {
             <div className="container" style={{ backgroundColor: "  " }}>
               <div class="row">
                 <div class="col-6">
-                  <img className="homeLogo" src={HomeLogo}></img>
+                  <img className="homeLogo" src={HomeLogo} alt="Logo"></img>
                 </div>
                 <div class="col-3">
                   <input
                     className="searchInput"
                     type="text"
-                    placeholder="Search By name....."
+                    placeholder="Search By Name ..."
                     onChange={(e) => {
                       this.setState({ search: e.target.value });
                     }}
